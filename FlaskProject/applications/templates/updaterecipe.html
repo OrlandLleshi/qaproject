@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update form </title>
+</head>
+<body>
+    <div class = "form">
+        <form method = 'POST' action = "">
+            {{form.hidden_tag()}}
+            {{form.recipe_name.label}}{{form.recipe_name}}
+            <br>
+            {{ form.ingredients.label }} {{ form.ingredients }}
+            <br>
+            {{form.instructions}}{{form.instructions}}
+            <br>
+            {{ form.submit }}
+            {{message}}
+        </form>
+    </div>
+</body>
+</html>

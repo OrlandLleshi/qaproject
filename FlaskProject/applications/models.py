@@ -2,22 +2,20 @@ from applications import db
 
 
 class Users(db.Model):
-    user_id = db.Column(db.Integer, primary_key= True)
-    first_name = db.Column(db.String(50))
-    last_name = db.Column(db.String(50))
-    email = db.Column(db.String(150), unique = True)
-    phone_number = db.Column(db.String(12))
-    verified = db.Column(db.Boolean, default= False)
+    user_id = db.Column(db.Integer, primary_key= True, nullable = False)
+    first_name = db.Column(db.String(50), nullable = False)
+    last_name = db.Column(db.String(50), nullable = False)
+    email = db.Column(db.String(150), unique = True, nullable = False)
+    phone_number = db.Column(db.String(12), unique = True, nullable = False)
+    recipes = db.relationship('Recipes', backref = 'user')
 
 
 
 class Recipes(db.Model):
-    recipe_id = db.Column(db.Integer, primary_key=True)
-    recipe_name = db.Column(db.String(30))
-    date_posted = db.Column(db.DateTime)
-    total_time_taken = db.Column(db.String(20))
-    ingredients = db.Column(db.String(500))
-    instrunctions = db.Column(db.String(2000))
-    user_id = db.Column(db.Integer, db.ForeignKey(Users.user_id))
+    recipe_id = db.Column(db.Integer, primary_key=True, nullable = False)
+    recipe_name = db.Column(db.String(30), nullable = False)
+    ingredients = db.Column(db.String(500), nullable = False)
+    instructions = db.Column(db.String(2000), nullable = False)
+    id = db.Column(db.Integer, db.ForeignKey(Users.user_id))
 
     
