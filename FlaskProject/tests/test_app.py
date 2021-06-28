@@ -42,6 +42,11 @@ class TestViews(TestBase):
         response = self.client.get(url_for('signup'))
         self.assert200(response,"Failed to load signup page")
 
+class TestViews(TestBase):
+    def test_get_update(self):
+        response = self.client.get(url_for('update', data= dict(first_name = 'John')))
+        self.assert200(response,"Failed to load update page")
+
 
 
 
