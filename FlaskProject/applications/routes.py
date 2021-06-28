@@ -82,22 +82,22 @@ def update(first_name):
   
 
 @app.route('/updaterecipe/<recipe_name>',methods = ['GET', 'POST'])
-def updaterecipe(recipe_id):
+def updaterecipe(recipe_name):
     first_recipe = Recipes.query.first()
     first_recipe.recipe_name = recipe_name
     db.session.commit()
     return first_recipe.recipe_name
     
-@app.route('/delete/<int:recipe_id>')
-def delete(recipe_id):
-    recipe_delete = Recipes.query.get(recipe_id)
+@app.route('/delete')
+def delete():
+    recipe_delete = Recipes.query.first()
     db.session.delete(recipe_delete)
     db.session.commit()
     return 'Recipe deleted'
 
-@app.route('/deleteuser/<int:user_id>')
-def deleteuser(user_id):
-    user_delete = Users.query.get(user_id)
+@app.route('/deleteuser')
+def deleteuser():
+    user_delete = Users.query.first()
     db.session.delete(user_delete)
     db.session.commit()
     return 'User deleted'
